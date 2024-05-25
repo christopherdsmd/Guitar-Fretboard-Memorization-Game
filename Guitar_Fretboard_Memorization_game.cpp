@@ -5,13 +5,39 @@
 #include <time.h>       /* time */
 using namespace std;
 
-// Function to convert a string to uppercase
+//converts cin inputs to always be uppercase  
 string toUpperCase(string str) {
     for (size_t i = 0; i < str.size(); ++i) {
         str[i] = toupper(str[i]);
     }
     return str;
 }
+
+//print string names
+void printString(int i)	
+{
+            switch(i) {
+                case 1:
+                    cout << "1st String" << endl;
+                    break;
+                case 2: 
+                    cout << "2nd String" << endl;
+                     break;
+                case 3:
+                    cout << "3rd  String" << endl;
+                     break;
+                case 4:
+                    cout << "4th  String" << endl;
+                     break;
+                case 5:
+                    cout << "5th  String" << endl;
+                    break;
+                case 6: 
+                    cout << "6th  String" << endl;
+                    break;
+            }
+}
+
 
 void printFrets(int i)  //print proper fret names   
 {
@@ -40,7 +66,6 @@ void printFrets(int i)  //print proper fret names
 int main() {
     // Random number generator 1-6 (corresponds to each string)
     srand(time(NULL)); // Seed random number generator
-    
     // Debug: cout << "random num = " << randNum << endl;
     
     // Correct answers for guitar fretboard
@@ -59,103 +84,23 @@ int main() {
  bool game = true;
 while(game) {
     bool winLose = true;
-    int randNum = rand() % 6 + 1;
-    switch(randNum) {
-        case 1:
-            cout << "First string: " << endl;
+    int randNum = rand() % 6 + 1;	//set random number generator 1-6 for strings
+            printString(randNum --);
             for (int i = 1; i <= 6; ++i) { // Loop through frets 1 to 6
+            
                printFrets(i);
                 cin >> user_Ans;
                 user_Ans = toUpperCase(user_Ans);
                 
-                if(user_Ans == fret_answers[0][i - 1]) {
+                if(user_Ans == fret_answers[randNum][i - 1]) {
                     cout << "Correct!" << endl;
                 } else {
-                    cout << "Incorrect. The correct answer is " << fret_answers[0][i - 1] << "." << endl;
+                    cout << "Incorrect. The correct answer is " << fret_answers[randNum][i - 1] << "." << endl;
                     winLose = false;
                 }
             }
-            break;
-        case 2:
-            cout << "Second string: " << endl;
-            for (int i = 1; i <= 6; ++i) { // Loop through frets 1 to 6
-                printFrets(i);
-                cin >> user_Ans;
-                user_Ans = toUpperCase(user_Ans);
-                
-                if(user_Ans == fret_answers[1][i - 1]) {
-                    cout << "Correct!" << endl;
-                } else {
-                    cout << "Incorrect. The correct answer is " << fret_answers[1][i - 1] << "." << endl;
-                    winLose = false;
-                }
-            }
-            break;
-        case 3:
-            cout << "Third string: " << endl;
-            for (int i = 1; i <= 6; ++i) { // Loop through frets 1 to 6
-                printFrets(i);
-                cin >> user_Ans;
-                user_Ans = toUpperCase(user_Ans);
-                
-                if(user_Ans == fret_answers[2][i - 1]) {
-                    cout << "Correct!" << endl;
-                } else {
-                    cout << "Incorrect. The correct answer is " << fret_answers[2][i - 1] << "." << endl;
-                    winLose = false;
-                }
-            }
-            break;
-        case 4:
-            cout << "Fourth string: " << endl;
-            for (int i = 1; i <= 6; ++i) { // Loop through frets 1 to 6
-                printFrets(i);
-                cin >> user_Ans;
-                user_Ans = toUpperCase(user_Ans);
-                
-                if(user_Ans == fret_answers[3][i - 1]) {
-                    cout << "Correct!" << endl;
-                } else {
-                    cout << "Incorrect. The correct answer is " << fret_answers[3][i - 1] << "." << endl;
-                    winLose = false;
-                }
-            }
-            break;
-        case 5:
-            cout << "Fifth string: " << endl;
-            for (int i = 1; i <= 6; ++i) { // Loop through frets 1 to 6
-                printFrets(i);
-                cin >> user_Ans;
-                user_Ans = toUpperCase(user_Ans);
-                
-                if(user_Ans == fret_answers[4][i - 1]) {
-                    cout << "Correct!" << endl;
-                } else {
-                    cout << "Incorrect. The correct answer is " << fret_answers[4][i - 1] << "." << endl;
-                    winLose = false;
-                }
-            }
-            break;
-        case 6:
-            cout << "Sixth string: " << endl;
-            for (int i = 1; i <= 6; ++i) { // Loop through frets 1 to 6
-                printFrets(i);
-                cin >> user_Ans;
-                user_Ans = toUpperCase(user_Ans);
-                
-                if(user_Ans == fret_answers[5][i - 1]) {
-                    cout << "Correct!" << endl;
-                } else {
-                    cout << "Incorrect. The correct answer is " << fret_answers[5][i - 1] << "." << endl;
-                    winLose = false;
-                }
-            }
-            break;
-        default:
-            cout << "Invalid string number." << endl;
-        break;
-    }
-    
+
+
     //win lose message
     if(winLose) {
         cout << "\nYou Win!" << endl;
@@ -163,10 +108,11 @@ while(game) {
         cout << "\nYou Lose" << endl;
     }
     
-        //print string again
+        //print string answers
         for (int i = 0; i < 6; ++i) {
-        cout << fret_answers[randNum -1][i] << " ";
+        cout << fret_answers[randNum][i] << " ";
         }
+		
 
 //play again ?
 int playagain;
